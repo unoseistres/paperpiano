@@ -12,7 +12,7 @@ int octave = 3; // default is 1. Change to 2 or 4 for higher octaves!
 float scale[] = {440*octave, 495*octave, 556.875*octave, 660*octave, 742.5*octave}; // array storing frequencies for pentatonic scale
 
 // REPLACE with readings from the 5 keys
-float keyReadings[] = {150, 142, 104, 92, 87};
+float keyReadings[] = {276, 225, 195, 203, 171};
 
 void setup() {
   // initialize serial communications at 2400 bps:
