@@ -97,6 +97,9 @@ void loop() {
   else {
     noTone( PP_SPEAKER_OUTPUT );
   }
-  
+
+  // Slows serial output scroll
+  delay( 25 ); 
+
 }
 
