@@ -10,38 +10,46 @@
 // --------------------------------------------------------------------------------------
 // Paper readings:
 //   Change these settings based on the readings from the individual keys of the piano.
-//   Place values in descending order regardless of key readings.
-//float keyReadings[] = {377, 340, 311, 279, 247};
+//   Place values in descending order regardless of key reading order.
+
 #define   PP_KEY_1            377
 #define   PP_KEY_2            340
 #define   PP_KEY_3            311
 #define   PP_KEY_4            279
 #define   PP_KEY_5            247
 
+
+
 // --------------------------------------------------------------------------------------
 // Sound and sensitivity configuration:
 //   These settings determine the sensitivity of values as well as the octave produced
-#define   PP_OCTAVE           1       // Change to 2 or 4 for higher pitches
-#define   PP_SHOULDER         5       // Reduce this to 3 if measured values are close together
-#define   PP_SILENT_CUTOFF    30      // Value below which should be considered no keys pressed
+
+#define   PP_OCTAVE           1         // Change to 2 or 4 for higher pitches
+#define   PP_OFFSET           5         // Reduce this to 3 if measured values are close together
+#define   PP_SILENT_CUTOFF    30        // Value below which should be considered no keys pressed
+
+
 
 // --------------------------------------------------------------------------------------
 // Scale configuration:
-//   The defaults create frequencies for the pentatonic scale.
+//   The default values create frequencies for the pentatonic scale.
+
 #define   PP_TONE_1           440
 #define   PP_TONE_2           495
 #define   PP_TONE_3           556.875
 #define   PP_TONE_4           660
 #define   PP_TONE_5           742.5
 
+
+
 // --------------------------------------------------------------------------------------
 // Hardware configuration:
 //   Change these settings based on the configuration of the hardware
 
-#define   PP_ANALOG_INPUT     A0
-#define   PP_SPEAKER_OUTPUT   11
-#define   PP_SERIAL_BAUD      2400
-#define   PP_READ_COUNT       100
+#define   PP_ANALOG_INPUT     A0        // The analog input connected to the paper
+#define   PP_SPEAKER_OUTPUT   11        // The output connected to the + of the speaker
+#define   PP_SERIAL_BAUD      2400      // The bitrate for the serial port
+#define   PP_READ_COUNT       100       // How many analog readings to take for average
 
 
 // --------------------------------------------------------------------------------------
@@ -71,19 +79,19 @@ void loop() {
   if ( sensorValue < PP_SILENT_CUTOFF ) {
     noTone( PP_SPEAKER_OUTPUT );
   }
-  else if ( sensorValue < PP_TONE_5 + PP_SHOULDER ) {
+  else if ( sensorValue < PP_TONE_5 + PP_OFFSET ) {
     tone( PP_SPEAKER_OUTPUT, PP_TONE_5 * PP_OCTAVE );
   }
-  else if ( sensorValue < PP_TONE_4 + PP_SHOULDER ) {
+  else if ( sensorValue < PP_TONE_4 + PP_OFFSET ) {
     tone( PP_SPEAKER_OUTPUT, PP_TONE_4 * PP_OCTAVE );
   }
-  else if ( sensorValue < PP_TONE_3 + PP_SHOULDER ) {
+  else if ( sensorValue < PP_TONE_3 + PP_OFFSET ) {
     tone( PP_SPEAKER_OUTPUT, PP_TONE_3 * PP_OCTAVE );
   }
-  else if ( sensorValue < PP_TONE_2 + PP_SHOULDER ) {
+  else if ( sensorValue < PP_TONE_2 + PP_OFFSET ) {
     tone( PP_SPEAKER_OUTPUT, PP_TONE_2 * PP_OCTAVE );
   }
-  else if ( sensorValue < PP_TONE_1 + PP_SHOULDER ) {
+  else if ( sensorValue < PP_TONE_1 + PP_OFFSET ) {
     tone( PP_SPEAKER_OUTPUT, PP_TONE_1 * PP_OCTAVE );
   }
   else {
