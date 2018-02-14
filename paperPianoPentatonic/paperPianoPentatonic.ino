@@ -73,29 +73,37 @@ void loop() {
   sensorValue /= PP_READ_COUNT;
   
   // Print out analog reading
-  Serial.println( sensorValue );
+  Serial.print( sensorValue );
+  Serial.print( "\t" );
 
   // Produce tone based on analog input
   if ( sensorValue < PP_SILENT_CUTOFF ) {
     noTone( PP_SPEAKER_OUTPUT );
+    Serial.println();
   }
-  else if ( sensorValue < PP_TONE_5 + PP_OFFSET ) {
+  else if ( sensorValue < (PP_KEY_5 + PP_OFFSET) ) {
     tone( PP_SPEAKER_OUTPUT, PP_TONE_5 * PP_OCTAVE );
+    Serial.println( "BUTTON 5" );
   }
-  else if ( sensorValue < PP_TONE_4 + PP_OFFSET ) {
+  else if ( sensorValue < (PP_KEY_4 + PP_OFFSET) ) {
     tone( PP_SPEAKER_OUTPUT, PP_TONE_4 * PP_OCTAVE );
+    Serial.println( "BUTTON 4" );
   }
-  else if ( sensorValue < PP_TONE_3 + PP_OFFSET ) {
+  else if ( sensorValue < (PP_KEY_3 + PP_OFFSET) ) {
     tone( PP_SPEAKER_OUTPUT, PP_TONE_3 * PP_OCTAVE );
+    Serial.println( "BUTTON 3" );
   }
-  else if ( sensorValue < PP_TONE_2 + PP_OFFSET ) {
+  else if ( sensorValue < (PP_KEY_2 + PP_OFFSET) ) {
     tone( PP_SPEAKER_OUTPUT, PP_TONE_2 * PP_OCTAVE );
+    Serial.println( "BUTTON 2" );
   }
-  else if ( sensorValue < PP_TONE_1 + PP_OFFSET ) {
+  else if ( sensorValue < (PP_KEY_1 + PP_OFFSET) ) {
     tone( PP_SPEAKER_OUTPUT, PP_TONE_1 * PP_OCTAVE );
+    Serial.println( "BUTTON 1" );
   }
   else {
     noTone( PP_SPEAKER_OUTPUT );
+    Serial.println(  );
   }
 
   // Slows serial output scroll
